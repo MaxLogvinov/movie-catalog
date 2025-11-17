@@ -1,8 +1,8 @@
 import './App.scss';
-import SearchForm from './components/SearchForm/SearchForm';
-import MoviesCardList from './components/MoviesCardList/MoviesCardList';
+import SearchForm from '../SearchForm/SearchForm';
+import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import { useSelector } from 'react-redux';
-import { type RootState } from './servises/store';
+import { type RootState } from '../../servises/store';
 
 function App() {
   const { movies, isLoading, error, errorMessage } = useSelector(
@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <header className="header">
-        <h1 style={{ flexWrap: 'nowrap' }}>Movie Catalog</h1>
+        <h1 className="header__title">Movie Catalog</h1>
         <SearchForm />
       </header>
 

@@ -15,6 +15,12 @@
   max-width: 60%;
   align-items: center;
   width: 100%;
+  &__title {
+    margin: 0;
+    font-family: var(--font-family);
+    font-weight: 800;
+    font-size: 54px;
+  }
 }
 
 .main {

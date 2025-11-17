@@ -1,7 +1,23 @@
+@font-face {
+  font-family: 'Gilroy';
+  src: url('./fonts/Gilroy-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('./fonts/Gilroy-ExtraBold.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --font-family: 'Gilroy', sans-serif;
   line-height: 1.5;
-  font-weight: 400;
+  font-weight: 300;
 
   color: rgba(255, 255, 255, 0.87);
   background-color: #111111;
