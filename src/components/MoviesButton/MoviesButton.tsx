@@ -8,7 +8,7 @@ function MoviesButton({ handleAddCards }: MoviesButtonProps) {
   return (
     <div className="movies-button">
       <button type="button" className="movies-button__element" onClick={handleAddCards}>
-        Ещё
+        Show more
       </button>
     </div>
   );

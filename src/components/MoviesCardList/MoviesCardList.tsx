@@ -11,18 +11,20 @@ interface MoviesCardListProps {
 function MoviesCardList({ movies }: MoviesCardListProps) {
   const getInitialCount = () => {
     const width = window.innerWidth;
-    if (width <= 718) return 3;
-    if (width <= 1238) return 4;
-    return 4;
+    if (width <= 870) return 2;
+    if (width <= 1090) return 3;
+    if (width <= 1435) return 4;
+    return 5;
   };
 
   const [visibleMovies, setVisibleMovies] = useState(getInitialCount);
 
   const handleAddCards = useCallback(() => {
     const width = window.innerWidth;
-    let moviesToAdd = 3;
-    if (width <= 1238) moviesToAdd = 2;
-    if (width <= 718) moviesToAdd = 2;
+    let moviesToAdd = 5;
+    if (width <= 1435) moviesToAdd = 4;
+    if (width <= 1090) moviesToAdd = 3;
+    if (width <= 870) moviesToAdd = 2;
 
     setVisibleMovies(prev => prev + moviesToAdd);
   }, []);

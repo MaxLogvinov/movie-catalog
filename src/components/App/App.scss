@@ -12,7 +12,7 @@
 .header {
   display: flex;
   justify-content: space-between;
-  max-width: 60%;
+  max-width: 80%;
   align-items: center;
   width: 100%;
   &__title {
@@ -31,4 +31,28 @@
 
 .footer {
   display: flex;
+}
+
+@media screen and (max-width: 1023px) {
+  .header {
+    max-width: 95%;
+    &__title {
+      font-size: 44px;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  #root {
+    padding: 1rem;
+  }
+
+  .header {
+    max-width: 95%;
+    flex-direction: column;
+    gap: 15px;
+    &__title {
+      font-size: 39px;
+    }
+  }
 }

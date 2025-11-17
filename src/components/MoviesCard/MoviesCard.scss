@@ -12,20 +12,28 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 17px 19px 19px 17px;
+  padding: 10px 15px 10px 10px;
 }
 
 .card__title {
   margin: 0;
   font-family: var(--font-family);
   font-size: 18px;
-
-  font-weight: 300;
+  font-weight: 800;
   line-height: 1.5;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
   max-width: 80%;
+  color: #fff;
+}
+
+.card__year {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.5;
 }
 
 // .card__link {

@@ -1,6 +1,5 @@
 .search-form {
   font-family: var(--font-family);
-  // width: 100%;
 }
 
 .search-form__input-container {
@@ -63,28 +62,18 @@
 }
 
 @media screen and (max-width: 1023px) {
-  // .search-form {
-  //   padding: 71px 30px 10px 30px;
-  // }
+  .search-form__input {
+    min-height: 39px;
+  }
+  .search-form__button {
+    height: 29px;
+  }
   .search-form__input-container {
-    padding: 0px 11px 0px 24px;
+    width: 290px;
   }
 }
 
 @media screen and (max-width: 767px) {
-  // .search-form {
-  //   padding: 71px 14px 10px 14px;
-  // }
-  .search-form__input-container {
-    padding: 0px 6px 0px 10px;
-  }
-  .search-form__button {
-    width: 100px;
-    height: 44px;
-  }
-  .search-form__input {
-    min-height: 53px;
-  }
   .search-form__input::placeholder {
     font-size: 16px;
     line-height: 16px;
