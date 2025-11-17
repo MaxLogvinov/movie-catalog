@@ -1,0 +1,125 @@
+.card {
+  width: 360px;
+  // height: 319px;
+  border-radius: 6px;
+  background: #222;
+  box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+.card__container {
+  display: flex;
+  justify-content: space-between;
+  padding: 17px 19px 19px 17px;
+}
+
+.card__title {
+  margin: 0;
+  color: #fff;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 80%;
+}
+
+.card__duration {
+  margin: 0;
+  color: #8b8b8b;
+  text-align: right;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+.card__link {
+  text-decoration: none;
+  transition: opacity 0.3s linear;
+}
+
+.card__link:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.card__image {
+  width: 100%;
+  object-fit: cover;
+  height: 200px;
+}
+
+.card__button {
+  border: none;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 11px;
+  width: 100px;
+  height: 29px;
+  border-radius: 30px;
+  background: #313131;
+  align-self: center;
+  margin: 18px 0 0 0;
+  transition: opacity 0.3s linear;
+}
+
+.card__button_type_added {
+  border: none;
+  padding: 0;
+  background: url(../../images/saved.svg);
+  width: 100px;
+  height: 29px;
+  margin: 18px 0 0 0;
+  align-self: center;
+}
+
+.card__button_type_delete {
+  background: url(../../images/button-delete.svg);
+}
+
+.card__button:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1023px) {
+  .card {
+    width: 342px;
+    height: 309px;
+  }
+  .card__image {
+    max-width: 342px;
+    max-height: 190px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .card {
+    width: 300px;
+    height: 271px;
+  }
+  .card__container {
+    padding: 13px 14px 14px 14px;
+  }
+  .card__image {
+    max-width: 300px;
+    max-height: 168px;
+  }
+  .card__title {
+    font-size: 12px;
+  }
+  .card__duration {
+    font-size: 10px;
+  }
+  .card__button {
+    margin: 16px 0 0 0;
+  }
+}
