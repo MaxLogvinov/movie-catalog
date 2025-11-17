@@ -1,11 +1,23 @@
 import './SearchForm.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import type { AppDispatch, RootState } from '../../servises/store';
+import { setSearchQuery } from '../../servises/slices/movieSearchSlice';
+import { fetchSearchMovies } from '../../servises/thunks/searchMoviesThunk';
+import type { ChangeEvent, FormEvent } from 'react';
 
 function SearchForm() {
-  function handleChange() {}
+  const dispatch = useDispatch<AppDispatch>();
+  const { searchQuery } = useSelector((state: RootState) => state.movieSearch);
 
-  function handleSubmit(e) {
+  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+    dispatch(setSearchQuery(e.target.value));
+  }
+
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log('submit', e);
+    if (searchQuery.trim()) {
+      dispatch(fetchSearchMovies(searchQuery));
+    }
   }
 
   return (
@@ -18,7 +30,8 @@ function SearchForm() {
             required
             className="search-form__input"
             onChange={handleChange}
-          ></input>
+            value={searchQuery}
+          />
           <button type="submit" className="search-form__button">
             Search
           </button>
