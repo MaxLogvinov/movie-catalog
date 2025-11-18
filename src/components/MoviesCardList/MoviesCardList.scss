@@ -1,12 +1,62 @@
 .movies__section {
   width: 100%;
-  // display: flex;
-  // align-items: center;
-  // flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.movies__loading {
+}
+
+.movies__error {
+  font-family: var(--font-family);
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.5;
+  padding-top: 5%;
+  p {
+    margin: 0;
+  }
+}
+
+.movies__results {
+  align-self: flex-start;
+  padding-top: 30px;
+  font-family: var(--font-family);
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.5;
+  padding-left: 10%;
+  p {
+    margin: 0;
+  }
+}
+
+.movies__loading {
+  font-family: var(--font-family);
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.5;
+  padding-top: 10%;
+  align-self: center;
+  p {
+    margin: 0;
+  }
+}
+
+.movies__no-results {
+  font-family: var(--font-family);
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.5;
+  padding-top: 10%;
+  align-self: center;
+  p {
+    margin: 0;
+  }
 }
 
 .movies__list {
-  // max-width: 1630px;
   padding: 50px 0 9px 0;
   margin: 0;
   list-style-type: none;
@@ -19,9 +69,61 @@
   justify-content: center;
 }
 
+.movies__pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin: 30px 0;
+
+  .pagination-button {
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    background: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover:not(:disabled) {
+      background: #f0f0f0;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    &--prev,
+    &--next {
+      min-width: 100px;
+    }
+  }
+
+  .pagination-info {
+    font-size: 14px;
+    color: #666;
+  }
+}
+
+.search-results-info {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 16px;
+  color: #333;
+}
+
 @media screen and (max-width: 1023px) {
   .movies__list {
     max-width: 80%;
+  }
+  .movies__results {
+    padding-left: 1%;
+    font-size: 16px;
+  }
+  .movies__no-results {
+    padding-left: 1%;
+    font-size: 16px;
+    align-self: center;
   }
 }
 

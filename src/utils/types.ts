@@ -4,20 +4,18 @@ export interface Movie {
   imdbID: string;
   Type: string;
   Poster: string;
-  Genre?: string;
-  Runtime?: string;
-  imdbRating?: string;
-  Director?: string;
-  Actors?: string;
-  Plot?: string;
 }
 
 export interface MovieSearchState {
   movies: Movie[];
+  allMovies: Movie[];
   isLoading: boolean;
   error: boolean;
   errorMessage: string;
   searchQuery: string;
+  currentPage: number;
+  totalResults: string;
+  hasMore: boolean;
 }
 
 export interface ApiResponse {

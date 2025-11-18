@@ -1,14 +1,8 @@
 import './App.scss';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import { useSelector } from 'react-redux';
-import { type RootState } from '../../servises/store';
 
 function App() {
-  const { movies, isLoading, error, errorMessage } = useSelector(
-    (state: RootState) => state.movieSearch
-  );
-
   return (
     <>
       <header className="header">
@@ -17,19 +11,7 @@ function App() {
       </header>
 
       <main className="main">
-        {isLoading && (
-          <div className="loading">
-            <p>Searching for movies...</p>
-          </div>
-        )}
-
-        {error && (
-          <div className="error">
-            <p>Error: {errorMessage}</p>
-          </div>
-        )}
-
-        <MoviesCardList movies={movies} />
+        <MoviesCardList />
       </main>
 
       <footer className="footer">

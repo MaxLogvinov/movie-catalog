@@ -4,10 +4,14 @@ import type { MovieSearchState } from '../../utils/types';
 
 const initialState: MovieSearchState = {
   movies: [],
+  allMovies: [],
   isLoading: false,
   error: false,
   errorMessage: '',
-  searchQuery: ''
+  searchQuery: '',
+  currentPage: 1,
+  totalResults: '0',
+  hasMore: false
 };
 
 const movieSearchSlice = createSlice({
@@ -19,26 +23,47 @@ const movieSearchSlice = createSlice({
     },
     clearMovies: state => {
       state.movies = [];
+      state.allMovies = [];
       state.error = false;
       state.errorMessage = '';
+      state.currentPage = 1;
+      state.totalResults = '0';
+      state.hasMore = false;
+    },
+    setCurrentPage: (state, action: PayloadAction<number>) => {
+      state.currentPage = action.payload;
     }
   },
   extraReducers: builder => {
     builder
       .addCase(fetchSearchMovies.fulfilled, (state, action) => {
-        state.movies = action.payload;
+        const { movies, totalResults, page, searchQuery } = action.payload;
+
+        if (page === 1) {
+          state.allMovies = movies;
+          state.movies = movies;
+        } else {
+          state.allMovies = [...state.allMovies, ...movies];
+          state.movies = state.allMovies;
+        }
+
+        state.totalResults = totalResults;
+        state.currentPage = page;
+        state.searchQuery = searchQuery;
         state.isLoading = false;
         state.error = false;
         state.errorMessage = '';
+
+        const total = parseInt(totalResults);
+        const loaded = state.allMovies.length;
+        state.hasMore = loaded < total;
       })
       .addCase(fetchSearchMovies.pending, state => {
-        state.movies = [];
         state.isLoading = true;
         state.error = false;
         state.errorMessage = '';
       })
       .addCase(fetchSearchMovies.rejected, (state, action) => {
-        state.movies = [];
         state.isLoading = false;
         state.error = true;
         state.errorMessage =
@@ -47,5 +72,5 @@ const movieSearchSlice = createSlice({
   }
 });
 
-export const { setSearchQuery, clearMovies } = movieSearchSlice.actions;
+export const { setSearchQuery, clearMovies, setCurrentPage } = movieSearchSlice.actions;
 export default movieSearchSlice.reducer;

@@ -1,7 +1,7 @@
 import './SearchForm.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import type { AppDispatch, RootState } from '../../servises/store';
-import { setSearchQuery } from '../../servises/slices/movieSearchSlice';
+import { setSearchQuery, clearMovies } from '../../servises/slices/movieSearchSlice';
 import { fetchSearchMovies } from '../../servises/thunks/searchMoviesThunk';
 import type { ChangeEvent, FormEvent } from 'react';
 
@@ -16,7 +16,8 @@ function SearchForm() {
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (searchQuery.trim()) {
-      dispatch(fetchSearchMovies(searchQuery));
+      dispatch(clearMovies());
+      dispatch(fetchSearchMovies({ searchQuery, page: 1 }));
     }
   }
 
