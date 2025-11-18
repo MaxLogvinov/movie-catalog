@@ -8,7 +8,6 @@ export interface Movie {
 
 export interface MovieSearchState {
   movies: Movie[];
-  allMovies: Movie[];
   isLoading: boolean;
   error: boolean;
   errorMessage: string;

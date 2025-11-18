@@ -1,10 +1,9 @@
-import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { fetchSearchMovies } from '../thunks/searchMoviesThunk';
 import type { MovieSearchState } from '../../utils/types';
 
 const initialState: MovieSearchState = {
   movies: [],
-  allMovies: [],
   isLoading: false,
   error: false,
   errorMessage: '',
@@ -18,20 +17,11 @@ const movieSearchSlice = createSlice({
   name: 'movieSearch',
   initialState,
   reducers: {
-    setSearchQuery: (state, action: PayloadAction<string>) => {
+    setSearchQuery: (state, action) => {
       state.searchQuery = action.payload;
     },
     clearMovies: state => {
-      state.movies = [];
-      state.allMovies = [];
-      state.error = false;
-      state.errorMessage = '';
-      state.currentPage = 1;
-      state.totalResults = '0';
-      state.hasMore = false;
-    },
-    setCurrentPage: (state, action: PayloadAction<number>) => {
-      state.currentPage = action.payload;
+      Object.assign(state, initialState);
     }
   },
   extraReducers: builder => {
@@ -39,14 +29,7 @@ const movieSearchSlice = createSlice({
       .addCase(fetchSearchMovies.fulfilled, (state, action) => {
         const { movies, totalResults, page, searchQuery } = action.payload;
 
-        if (page === 1) {
-          state.allMovies = movies;
-          state.movies = movies;
-        } else {
-          state.allMovies = [...state.allMovies, ...movies];
-          state.movies = state.allMovies;
-        }
-
+        state.movies = movies;
         state.totalResults = totalResults;
         state.currentPage = page;
         state.searchQuery = searchQuery;
@@ -55,8 +38,7 @@ const movieSearchSlice = createSlice({
         state.errorMessage = '';
 
         const total = parseInt(totalResults);
-        const loaded = state.allMovies.length;
-        state.hasMore = loaded < total;
+        state.hasMore = page < Math.ceil(total / 10);
       })
       .addCase(fetchSearchMovies.pending, state => {
         state.isLoading = true;
@@ -66,11 +48,10 @@ const movieSearchSlice = createSlice({
       .addCase(fetchSearchMovies.rejected, (state, action) => {
         state.isLoading = false;
         state.error = true;
-        state.errorMessage =
-          action.error.message || 'Произошла неизвестная ошибка. Попробуйте повторить позже';
+        state.errorMessage = action.error.message || 'Unknown error occurred';
       });
   }
 });
 
-export const { setSearchQuery, clearMovies, setCurrentPage } = movieSearchSlice.actions;
+export const { setSearchQuery, clearMovies } = movieSearchSlice.actions;
 export default movieSearchSlice.reducer;

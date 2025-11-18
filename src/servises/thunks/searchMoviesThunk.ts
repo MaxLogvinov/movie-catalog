@@ -9,7 +9,7 @@ export const fetchSearchMovies = createAsyncThunk<
   { searchQuery: string; page?: number }
 >('movies/search', async ({ searchQuery, page = 1 }) => {
   if (!API_KEY) {
-    throw new Error('API key is not configured. Please check your .env file');
+    throw new Error('API key is not configured');
   }
 
   const response = await fetch(
@@ -17,13 +17,26 @@ export const fetchSearchMovies = createAsyncThunk<
   );
 
   if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
+    // Обработка HTTP ошибок
+    if (response.status >= 500) {
+      throw new Error('Server error, please try again later');
+    } else if (response.status === 401) {
+      throw new Error('API key is invalid');
+    } else {
+      throw new Error(`Network error: ${response.status}`);
+    }
   }
 
   const data: ApiResponse = await response.json();
 
   if (data.Response === 'False') {
-    throw new Error(data.Error || 'Unknown error occurred');
+    if (data.Error?.includes('Movie not found')) {
+      throw new Error('No movies found for your search');
+    } else if (data.Error?.includes('Too many results')) {
+      throw new Error('Too many results, please refine your search');
+    } else {
+      throw new Error(data.Error || 'Unknown error occurred');
+    }
   }
 
   return {

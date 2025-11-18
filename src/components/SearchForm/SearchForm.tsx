@@ -1,13 +1,13 @@
 import './SearchForm.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import type { AppDispatch, RootState } from '../../servises/store';
-import { setSearchQuery, clearMovies } from '../../servises/slices/movieSearchSlice';
+import { setSearchQuery } from '../../servises/slices/movieSearchSlice';
 import { fetchSearchMovies } from '../../servises/thunks/searchMoviesThunk';
 import type { ChangeEvent, FormEvent } from 'react';
 
 function SearchForm() {
   const dispatch = useDispatch<AppDispatch>();
-  const { searchQuery } = useSelector((state: RootState) => state.movieSearch);
+  const { searchQuery, isLoading } = useSelector((state: RootState) => state.movieSearch);
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     dispatch(setSearchQuery(e.target.value));
@@ -15,8 +15,7 @@ function SearchForm() {
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (searchQuery.trim()) {
-      dispatch(clearMovies());
+    if (searchQuery.trim() && !isLoading) {
       dispatch(fetchSearchMovies({ searchQuery, page: 1 }));
     }
   }
@@ -32,9 +31,10 @@ function SearchForm() {
             className="search-form__input"
             onChange={handleChange}
             value={searchQuery}
+            disabled={isLoading}
           />
-          <button type="submit" className="search-form__button">
-            Search
+          <button type="submit" className="search-form__button" disabled={isLoading}>
+            {isLoading ? 'Searching...' : 'Search'}
           </button>
         </div>
       </form>
