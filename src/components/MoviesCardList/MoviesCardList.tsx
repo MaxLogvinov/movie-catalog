@@ -2,17 +2,31 @@ import './MoviesCardList.scss';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import ReactPaginate from 'react-paginate';
 import { useDispatch, useSelector } from 'react-redux';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import type { AppDispatch, RootState } from '../../servises/store';
 import { fetchSearchMovies } from '../../servises/thunks/searchMoviesThunk';
+import { fetchTopMovies } from '../../servises/thunks/fetchTopMoviesThunk';
+import WelcomeSlider from '../WelcomeSlider/WelcomeSlider';
 
 function MoviesCardList() {
   const dispatch = useDispatch<AppDispatch>();
-  const { movies, isLoading, error, errorMessage, totalResults, searchQuery, currentPage } =
-    useSelector((state: RootState) => state.movieSearch);
+  const {
+    movies,
+    topMovies,
+    isLoading,
+    error,
+    errorMessage,
+    totalResults,
+    searchQuery,
+    currentPage
+  } = useSelector((state: RootState) => state.movieSearch);
 
   const [isChangingPage, setIsChangingPage] = useState(false);
   const lastPageRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    dispatch(fetchTopMovies());
+  }, [dispatch]);
 
   const handlePageClick = (event: { selected: number }) => {
     const newPage = event.selected + 1;
@@ -102,9 +116,10 @@ function MoviesCardList() {
       ) : (
         !isLoading &&
         !error && (
-          <div className="movies__no-results">
-            <p>Welcome</p>
-          </div>
+          // <div className="movies__no-results">
+          //   <p>Welcome</p>
+          // </div>
+          <WelcomeSlider movies={topMovies} />
         )
       )}
     </section>

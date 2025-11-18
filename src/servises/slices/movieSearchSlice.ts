@@ -1,9 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchSearchMovies } from '../thunks/searchMoviesThunk';
+import { fetchTopMovies } from '../thunks/fetchTopMoviesThunk';
 import type { MovieSearchState } from '../../utils/types';
 
 const initialState: MovieSearchState = {
   movies: [],
+  topMovies: [],
   isLoading: false,
   error: false,
   errorMessage: '',
@@ -26,6 +28,7 @@ const movieSearchSlice = createSlice({
   },
   extraReducers: builder => {
     builder
+      // Обработка поиска фильмов
       .addCase(fetchSearchMovies.fulfilled, (state, action) => {
         const { movies, totalResults, page, searchQuery } = action.payload;
 
@@ -49,6 +52,15 @@ const movieSearchSlice = createSlice({
         state.isLoading = false;
         state.error = true;
         state.errorMessage = action.error.message || 'Unknown error occurred';
+      })
+      // Обработка загрузки топ фильмов
+      .addCase(fetchTopMovies.fulfilled, (state, action) => {
+        console.log(action.payload);
+        state.topMovies = action.payload;
+      })
+      .addCase(fetchTopMovies.rejected, (state, action) => {
+        console.error('Failed to fetch top movies:', action.error);
+        // Можно добавить обработку ошибок для топ фильмов
       });
   }
 });
