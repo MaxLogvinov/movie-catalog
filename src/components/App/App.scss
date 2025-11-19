@@ -31,6 +31,10 @@
 
 .footer {
   display: flex;
+  font-family: var(--font-family);
+  p {
+    margin: 0;
+  }
 }
 
 @media screen and (max-width: 1023px) {

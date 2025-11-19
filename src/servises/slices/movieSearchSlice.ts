@@ -28,10 +28,19 @@ const movieSearchSlice = createSlice({
   },
   extraReducers: builder => {
     builder
-      // Обработка поиска фильмов
+      .addCase(fetchSearchMovies.pending, (state, action) => {
+        state.isLoading = true;
+        state.error = false;
+        state.errorMessage = '';
+        const arg = action.meta.arg;
+        if (arg?.page === 1) {
+          state.movies = [];
+          state.totalResults = '0';
+          state.currentPage = 1;
+        }
+      })
       .addCase(fetchSearchMovies.fulfilled, (state, action) => {
         const { movies, totalResults, page, searchQuery } = action.payload;
-
         state.movies = movies;
         state.totalResults = totalResults;
         state.currentPage = page;
@@ -39,28 +48,26 @@ const movieSearchSlice = createSlice({
         state.isLoading = false;
         state.error = false;
         state.errorMessage = '';
-
         const total = parseInt(totalResults);
         state.hasMore = page < Math.ceil(total / 10);
       })
-      .addCase(fetchSearchMovies.pending, state => {
-        state.isLoading = true;
-        state.error = false;
-        state.errorMessage = '';
-      })
+
       .addCase(fetchSearchMovies.rejected, (state, action) => {
+        const msg = action.payload as string | undefined;
+        if (msg === 'aborted') {
+          state.isLoading = false;
+          return;
+        }
         state.isLoading = false;
         state.error = true;
-        state.errorMessage = action.error.message || 'Unknown error occurred';
+        state.errorMessage = msg || action.error.message || 'Unknown error occurred';
       })
-      // Обработка загрузки топ фильмов
+
       .addCase(fetchTopMovies.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.topMovies = action.payload;
       })
       .addCase(fetchTopMovies.rejected, action => {
         console.error('Failed to fetch top movies:', action.error);
-        // Можно добавить обработку ошибок для топ фильмов
       });
   }
 });

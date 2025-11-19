@@ -15,7 +15,7 @@ function App() {
       </main>
 
       <footer className="footer">
-        <h4 style={{ margin: '0' }}>Inc Corp</h4>
+        <p>&copy; {new Date().getFullYear()} Inc Corp</p>
       </footer>
     </>
   );

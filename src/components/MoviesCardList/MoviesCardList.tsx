@@ -45,22 +45,6 @@ function MoviesCardList() {
 
   const totalPages = Math.ceil(parseInt(totalResults) / 10);
 
-  const getErrorMessage = () => {
-    if (errorMessage?.includes('Server error')) {
-      return 'Server error, please try again later';
-    } else if (errorMessage?.includes('Network error')) {
-      return 'Network error, please check your connection';
-    } else if (errorMessage?.includes('API key')) {
-      return 'API configuration error';
-    } else if (errorMessage?.includes('No movies found')) {
-      return 'No movies found for your search';
-    } else if (errorMessage?.includes('Too many results')) {
-      return 'Too many results, please refine your search';
-    } else {
-      return 'No results found for your query';
-    }
-  };
-
   return (
     <section className="movies__section">
       {isLoading && (
@@ -68,23 +52,18 @@ function MoviesCardList() {
           <p>Searching...</p>
         </div>
       )}
-
       {error && (
         <div className="movies__error">
-          <p>{getErrorMessage()}</p>
+          <p>{errorMessage}</p>
         </div>
       )}
-
       {!error && movies.length > 0 && (
         <div className="movies__results">
           <p>
             Found for your query: "{searchQuery}" ({totalResults} results)
-            <br />
-            Showing {movies.length} movies on page {currentPage} of {totalPages}
           </p>
         </div>
       )}
-
       {movies.length > 0 ? (
         <>
           <ul className="movies__list">
@@ -92,7 +71,6 @@ function MoviesCardList() {
               <MoviesCard key={movie.imdbID} movie={movie} />
             ))}
           </ul>
-
           <ReactPaginate
             breakLabel="..."
             nextLabel="Next →"
@@ -114,13 +92,7 @@ function MoviesCardList() {
           />
         </>
       ) : (
-        !isLoading &&
-        !error && (
-          // <div className="movies__no-results">
-          //   <p>Welcome</p>
-          // </div>
-          <WelcomeSlider movies={topMovies} />
-        )
+        !isLoading && !error && <WelcomeSlider movies={topMovies} />
       )}
     </section>
   );
