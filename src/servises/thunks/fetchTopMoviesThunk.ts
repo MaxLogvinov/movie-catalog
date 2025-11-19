@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import type { ApiResponse, Movie } from '../../utils/types';
+import type { ApiResponse, Movie } from '../../types/types';
 
 const API_KEY = import.meta.env.VITE_OMDB_API_KEY;
 const BASE_URL = 'https://www.omdbapi.com/';

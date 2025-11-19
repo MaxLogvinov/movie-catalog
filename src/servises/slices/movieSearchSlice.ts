@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchSearchMovies } from '../thunks/searchMoviesThunk';
 import { fetchTopMovies } from '../thunks/fetchTopMoviesThunk';
-import type { MovieSearchState } from '../../utils/types';
+import type { MovieSearchState } from '../../types/types';
 
 const initialState: MovieSearchState = {
   movies: [],
@@ -58,7 +58,7 @@ const movieSearchSlice = createSlice({
         console.log(action.payload);
         state.topMovies = action.payload;
       })
-      .addCase(fetchTopMovies.rejected, (state, action) => {
+      .addCase(fetchTopMovies.rejected, action => {
         console.error('Failed to fetch top movies:', action.error);
         // Можно добавить обработку ошибок для топ фильмов
       });

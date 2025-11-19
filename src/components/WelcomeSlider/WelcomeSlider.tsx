@@ -10,7 +10,7 @@ import 'swiper/css/thumbs';
 import 'swiper/css/navigation';
 import 'swiper/css/free-mode';
 
-import type { Movie } from '../../utils/types';
+import type { Movie } from '../../types/types';
 
 interface WelcomeSliderProps {
   movies: Movie[];

@@ -1,5 +1,5 @@
 import './MoviesCard.scss';
-import { type Movie } from '../../utils/types';
+import { type Movie } from '../../types/types';
 
 interface MoviesCardProps {
   movie: Movie;
