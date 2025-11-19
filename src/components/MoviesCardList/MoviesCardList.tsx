@@ -76,8 +76,6 @@ function MoviesCardList() {
             nextLabel="Next →"
             previousLabel="← Previous"
             onPageChange={handlePageClick}
-            pageRangeDisplayed={3}
-            marginPagesDisplayed={1}
             pageCount={totalPages}
             forcePage={currentPage - 1}
             containerClassName="pagination"
@@ -89,6 +87,8 @@ function MoviesCardList() {
             activeClassName="pagination__active"
             disabledClassName="pagination__disabled"
             renderOnZeroPageCount={null}
+            pageRangeDisplayed={window.innerWidth <= 320 ? 1 : 3}
+            marginPagesDisplayed={window.innerWidth <= 320 ? 0 : 1}
           />
         </>
       ) : (
