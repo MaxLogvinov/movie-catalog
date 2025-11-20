@@ -1,0 +1,131 @@
+.movie-preview {
+  position: absolute;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.95);
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  min-width: 280px;
+  animation: fadeInUp 0.3s ease;
+  font-family: var(--font-family);
+
+  &--top {
+    bottom: 20%;
+    margin-bottom: 10px;
+    margin-right: 30px;
+    right: 50%;
+    left: 50%;
+  }
+
+  &--bottom {
+    top: 100%;
+    margin-top: 1px;
+  }
+
+  &__content {
+    display: flex;
+    gap: 12px;
+  }
+
+  &__poster {
+    width: 80px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 6px;
+  }
+
+  &__info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  &__title {
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    margin: 0;
+    line-height: 1.2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  &__year {
+    font-size: 12px;
+    color: #f5c518;
+    margin: 0;
+    font-weight: 600;
+  }
+
+  &__meta {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin: 2px 0;
+  }
+
+  &__genre {
+    background: rgba(245, 197, 24, 0.15);
+    color: #f5c518;
+    padding: 2px 6px;
+    border-radius: 8px;
+    font-size: 10px;
+    font-weight: 600;
+    border: 1px solid rgba(245, 197, 24, 0.3);
+  }
+
+  &__country {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ccc;
+    padding: 2px 6px;
+    border-radius: 8px;
+    font-size: 10px;
+    font-weight: 500;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  &__rating {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: auto;
+  }
+
+  &__imdb {
+    font-size: 10px;
+    background: #f5c518;
+    color: black;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+  }
+
+  &__score {
+    font-size: 12px;
+    color: white;
+    font-weight: 700;
+
+    &:before {
+      content: '★';
+      color: #f5c518;
+      margin-right: 3px;
+      font-size: 10px;
+    }
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

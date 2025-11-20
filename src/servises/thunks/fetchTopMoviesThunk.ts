@@ -5,7 +5,11 @@ const API_KEY = import.meta.env.VITE_OMDB_API_KEY;
 const BASE_URL = 'https://www.omdbapi.com/';
 
 export const fetchTopMovies = createAsyncThunk<Movie[]>('movies/fetchTop', async () => {
-  const response = await fetch(`${BASE_URL}?apikey=${API_KEY}&s=top&type=movie&page=1`);
+  const randomPage = Math.floor(Math.random() * 100) + 1;
+
+  const response = await fetch(
+    `${BASE_URL}?apikey=${API_KEY}&s=movie&type=movie&page=${randomPage}`
+  );
 
   const data: ApiResponse = await response.json();
 

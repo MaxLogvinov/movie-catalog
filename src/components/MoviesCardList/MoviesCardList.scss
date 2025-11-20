@@ -70,6 +70,9 @@
     gap: 32px 28px;
     justify-content: center;
   }
+  .movies__preview-container {
+    pointer-events: none;
+  }
 }
 
 .pagination {

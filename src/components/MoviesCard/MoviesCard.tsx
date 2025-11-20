@@ -3,16 +3,19 @@ import { type Movie } from '../../types/types';
 
 interface MoviesCardProps {
   movie: Movie;
+  onMouseEnter: (event: React.MouseEvent) => void;
+  onMouseLeave: () => void;
+  onClick: () => void;
 }
 
-function MoviesCard({ movie }: MoviesCardProps) {
+function MoviesCard({ movie, onMouseEnter, onMouseLeave, onClick }: MoviesCardProps) {
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     const target = e.target as HTMLImageElement;
     target.src = '/no-poster-found.jpg';
   };
 
   return (
-    <li className="card">
+    <li className="card" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} onClick={onClick}>
       <img
         className="card__image"
         src={movie.Poster !== 'N/A' ? movie.Poster : '/no-poster-found.jpg'}

@@ -1,60 +1,89 @@
 .card {
-  width: 250px;
-  height: 100%;
-  border-radius: 14px 14px 14px 14px;
+  position: relative;
   background: #222;
+  border-radius: 12px;
+  overflow: hidden;
   box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-family: var(--font-family);
   display: flex;
   flex-direction: column;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+
+    .card__image {
+      transform: scale(1.05);
+    }
+
+    .card__container {
+      background: rgba(0, 0, 0, 0.9);
+    }
+
+    .card {
+      background: rgba(0, 0, 0, 0.9);
+    }
+
+    .card__title,
+    .card__year {
+      color: #fff;
+    }
+  }
+
+  &__image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  &__container {
+    padding: 16px;
+    background: #222;
+    transition: background 0.3s ease;
+    flex-grow: 1;
+  }
+
+  &__title {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    color: #fff;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: color 0.3s ease;
+    font-family: var(--font-family);
+  }
+
+  &__year {
+    font-size: 14px;
+    color: #ccc;
+    margin: 0;
+    transition: color 0.3s ease;
+    font-family: var(--font-family);
+  }
 }
 
-.card__container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 15px 10px 10px;
-}
+@media (max-width: 768px) {
+  .card {
+    &__image {
+      height: 250px;
+    }
 
-.card__title {
-  margin: 0;
-  font-family: var(--font-family);
-  font-size: 18px;
-  font-weight: 800;
-  line-height: 1.5;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  max-width: 80%;
-  color: #fff;
-}
+    &__container {
+      padding: 12px;
+    }
 
-.card__year {
-  margin: 0;
-  font-family: var(--font-family);
-  font-size: 18px;
-  font-weight: 300;
-  line-height: 1.5;
-}
+    &__title {
+      font-size: 14px;
+    }
 
-// .card__link {
-//   text-decoration: none;
-//   transition: opacity 0.3s linear;
-// }
-
-// .card__link:hover {
-//   opacity: 0.7;
-//   cursor: pointer;
-// }
-
-.card__image {
-  width: 100%;
-  object-fit: cover;
-  height: 100%;
-  border-radius: 14px 14px 0 0;
-}
-
-@media screen and (max-width: 1023px) {
-}
-
-@media screen and (max-width: 767px) {
+    &__year {
+      font-size: 12px;
+    }
+  }
 }

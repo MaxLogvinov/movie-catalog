@@ -4,7 +4,15 @@
   padding: 40px 20px;
   width: 100%;
   font-family: var(--font-family);
+  position: relative;
 
+  &__preview-container {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+  }
   &__title {
     text-align: center;
     font-size: 2rem;
@@ -49,6 +57,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
   }
 
   &__movie-title {
@@ -129,10 +138,6 @@
       width: 50%;
     }
 
-    &__info {
-      padding: 15px;
-    }
-
     &__movie-title {
       font-size: 1.4rem;
     }
@@ -178,6 +183,9 @@
       display: block;
       height: auto;
     }
+    &__info {
+      padding: 0;
+    }
 
     &__thumbs {
       display: none !important;
@@ -185,6 +193,9 @@
 
     &__thumb {
       display: none !important;
+    }
+    &__button {
+      margin: 10px;
     }
   }
 }

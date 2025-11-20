@@ -20,6 +20,14 @@
     font-family: var(--font-family);
     font-weight: 800;
     font-size: 54px;
+    &--clickable {
+      cursor: pointer;
+      transition: opacity 0.3s ease;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
   }
 }
 
