@@ -1,9 +1,12 @@
+# 🎬 Movie Catalog
+
 <div align="center">
-https://img.shields.io/badge/React-18.2.0-61dafb?style=for-the-badge&logo=react
-https://img.shields.io/badge/TypeScript-5.0.2-3178c6?style=for-the-badge&logo=typescript
-https://img.shields.io/badge/Redux_Toolkit-1.9.7-764abc?style=for-the-badge&logo=redux
-https://img.shields.io/badge/Vite-4.4.5-646cff?style=for-the-badge&logo=vite
-https://img.shields.io/badge/SASS-1.69.5-cc6699?style=for-the-badge&logo=sass
+
+![React](https://img.shields.io/badge/React-18.2.0-61dafb?style=for-the-badge&logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0.2-3178c6?style=for-the-badge&logo=typescript)
+![Redux Toolkit](https://img.shields.io/badge/Redux_Toolkit-1.9.7-764abc?style=for-the-badge&logo=redux)
+![Vite](https://img.shields.io/badge/Vite-4.4.5-646cff?style=for-the-badge&logo=vite)
+![SASS](https://img.shields.io/badge/SASS-1.69.5-cc6699?style=for-the-badge&logo=sass)
 
 </div>
 
@@ -79,30 +82,6 @@ npm install
 ```env
 VITE_OMDB_API_KEY=your_omdb_api_key_here
 ```
-
-## 📁 Структура проекта
-
-movie-catalog/
-├── public/ # Статические файлы
-├── src/
-│ ├── components/ # React компоненты
-│ │ ├── App/ # Главный компонент
-│ │ ├── SearchForm/ # Форма поиска
-│ │ ├── MoviesCard/ # Карточка фильма
-│ │ ├── MoviesCardList/# Список фильмов
-│ │ ├── WelcomeSlider/ # Слайдер популярных фильмов
-│ │ └── MoviePreview/ # Превью при наведении
-│ ├── pages/ # Страницы приложения
-│ │ └── MovieDetails/ # Детальная страница фильма
-│ ├── servises/ # Логика приложения
-│ │ ├── store/ # Redux store
-│ │ ├── slices/ # Redux slices
-│ │ └── thunks/ # Redux thunks для API
-│ ├── types/ # TypeScript типы
-│ ├── hooks/ # Кастомные React хуки
-│ └── styles/ # Глобальные стили
-├── package.json
-└── vite.config.ts
 
 ## 🔧 API
 
