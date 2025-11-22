@@ -4,20 +4,28 @@ import type { AppDispatch, RootState } from '../../servises/store';
 import { setSearchQuery } from '../../servises/slices/movieSearchSlice';
 import { fetchSearchMovies } from '../../servises/thunks/searchMoviesThunk';
 import type { ChangeEvent, FormEvent } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 function SearchForm() {
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
   const { searchQuery, isLoading } = useSelector((state: RootState) => state.movieSearch);
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     dispatch(setSearchQuery(e.target.value));
   }
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (searchQuery.trim() && !isLoading) {
-      dispatch(fetchSearchMovies({ searchQuery, page: 1 }));
+
+    if (!searchQuery.trim() || isLoading) return;
+
+    if (pathname !== '/') {
+      navigate('/');
     }
+
+    dispatch(fetchSearchMovies({ searchQuery, page: 1 }));
   }
 
   return (

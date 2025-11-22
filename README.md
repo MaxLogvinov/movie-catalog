@@ -2,11 +2,11 @@
 
 <div align="center">
 
-![React](https://img.shields.io/badge/React-18.2.0-61dafb?style=for-the-badge&logo=react)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.0.2-3178c6?style=for-the-badge&logo=typescript)
-![Redux Toolkit](https://img.shields.io/badge/Redux_Toolkit-1.9.7-764abc?style=for-the-badge&logo=redux)
-![Vite](https://img.shields.io/badge/Vite-4.4.5-646cff?style=for-the-badge&logo=vite)
-![SASS](https://img.shields.io/badge/SASS-1.69.5-cc6699?style=for-the-badge&logo=sass)
+![React](https://img.shields.io/badge/React-19.2.0-61dafb?style=for-the-badge&logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.3.3-3178c6?style=for-the-badge&logo=typescript)
+![Redux Toolkit](https://img.shields.io/badge/Redux_Toolkit-2.10.1-764abc?style=for-the-badge&logo=redux)
+![Vite](https://img.shields.io/badge/Vite-7.2.2-646cff?style=for-the-badge&logo=vite)
+![SASS](https://img.shields.io/badge/SASS-1.94.0-cc6699?style=for-the-badge&logo=sass)
 
 </div>
 

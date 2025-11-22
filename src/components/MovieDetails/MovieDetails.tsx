@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import type { RootState, AppDispatch } from '../../servises/store';
 import { fetchSingleMovieDetails } from '../../servises/thunks/fetchSingleMovieDetails';
 import { useMoviesCache } from '../../hooks/useMoviesCache';
+import FallbackImage from '../FallbackImage/FallbackImage';
 
 function MovieDetails() {
   const { id } = useParams<{ id: string }>();
@@ -53,11 +54,7 @@ function MovieDetails() {
 
       <div className="movie-details__content">
         <div className="movie-details__poster-section">
-          <img
-            src={movie.Poster !== 'N/A' ? movie.Poster : '/no-poster.jpg'}
-            alt={movie.Title}
-            className="movie-details__poster"
-          />
+          <FallbackImage className="movie-details__poster" src={movie.Poster} alt={movie.Title} />
         </div>
 
         <div className="movie-details__info">
